@@ -60,29 +60,34 @@ export class MovieCardComponent implements OnInit {
         Name: movie.Director.Name,
         Description: movie.Director.Bio,
         Birth: movie.Director.Birth,
-        Death: movie
+        Death: movie.Director.Death
       }
     })
   }
 
   isFavorite(id: string): boolean {
-    return this.fetchApiData.isFavoriteMovie(id)
+    const user = localStorage.getItem('user');
+    const favorites = JSON.parse(user!).FavoriteMovies;
+    return favorites.includes(id);
   }
 
-  removeFavorite(id: string): void {
-    this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
-      this.snackBar.open('removed from favorites', 'OK', {
-        duration: 2000
-      })
+  deleteFavoriteMovie(id: string): void {
+    this.fetchApiData.deleteFavoriteMovie(id).subscribe((resp: any) => {
+      console.log(resp)
+      let movie = this.movies.find((m: any) => m._id === id).Title;
+      this.snackBar.open(`"${movie}" has been removed from your favorites!`,'OK', {
+          duration: 2000,
+        });
     });
   }
 
-  addFavorite(movie: string): void {
-    console.log(movie)
-    this.fetchApiData.addFavoriteMovie(movie).subscribe(() => {
-      this.snackBar.open('added to favorites', 'OK', {
-        duration: 2000
-      })
+  addFavoriteMovie(id: string): void {
+    this.fetchApiData.addFavoriteMovie(id).subscribe((resp: any) => {
+      console.log(resp)
+      let movie = this.movies.find((m: any) => m._id === id).Title;
+      this.snackBar.open(`"${movie}" has been added to your favorites!`, 'OK', {
+        duration: 2000,
+      });
     });
   }
 }
