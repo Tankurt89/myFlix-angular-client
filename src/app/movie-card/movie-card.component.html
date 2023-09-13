@@ -30,9 +30,15 @@
             <button
                 mat-button
                 color="primary"
-                (click)="addFavorite(movie)">
+                (click)="addFavoriteMovie(movie._id)">
+            <mat-icon>favorite</mat-icon>
+            </button>
+            <button
+                mat-button
+                color="primary"
+                (click)="deleteFavoriteMovie(movie._id)">
             <mat-icon>favorite_border</mat-icon>
-        </button>
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>
