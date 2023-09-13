@@ -69,6 +69,13 @@ export class ProfilePageComponent implements OnInit {
       });
     }
   }
-
-  
+  deleteFavoriteMovie(id: string): void {
+    this.fetchApiData.deleteFavoriteMovie(id).subscribe((resp: any) => {
+      this.snackBar.open(`Movie removed from favorites!`, 'OK', {
+        duration: 2000,
+      });
+      window.location.reload();
+    });
+  }
 }
+  

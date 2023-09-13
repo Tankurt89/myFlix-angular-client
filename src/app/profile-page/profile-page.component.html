@@ -10,8 +10,11 @@
                 <p>No favorites.</p>
             </div>
         <mat-list>
-            <mat-list-item *ngFor="let movie of favoriteMovies">
+            <mat-list-item  *ngFor="let movie of favoriteMovies">
                 <span matListItemTitle>{{movie.Title}}</span>
+                <button mat-icon-button (click)="deleteFavoriteMovie(movie._id)">
+                <mat-icon>favorite_border</mat-icon>
+                </button>
             </mat-list-item>
         </mat-list>
         </div>
