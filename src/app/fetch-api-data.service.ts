@@ -119,7 +119,7 @@ export class UserRegistrationService {
 			)
 			.pipe(map(this.extractResponseData), catchError(this.handleError));
 	}
-  //test
+
 	isFavoriteMovie(movieId: string): boolean {
 		const user = JSON.parse(localStorage.getItem("user") || "{}");
 		return user.FavoriteMovies.indexOf(movieId) >= 0;
