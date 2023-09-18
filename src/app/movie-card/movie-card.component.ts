@@ -65,12 +65,17 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  
   isFavorite(id: string): boolean {
     const user = localStorage.getItem('user');
     const favorites = JSON.parse(user!).FavoriteMovies;
     return favorites.includes(id);
   }
 
+  /**
+   * Allows the user to remove this movie from their favorite list.
+   * @param id 
+   */
   deleteFavoriteMovie(id: string): void {
     this.fetchApiData.deleteFavoriteMovie(id).subscribe((resp: any) => {
       console.log(resp)
